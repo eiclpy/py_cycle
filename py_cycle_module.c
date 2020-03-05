@@ -65,13 +65,13 @@ static PyObject *py_timerDiffNoStatistic(PyObject *self, PyObject *args)
 }
 
 static PyMethodDef py_cycle_methods[] = {
-    {"getCycle", (PyNoArgsFunction)py_getCycle, METH_NOARGS,
+    {"getCycle", (PyCFunction)py_getCycle, METH_NOARGS,
      "Get cpu cycle"},
-    {"getStatistic", (PyNoArgsFunction)py_timeDiffStatistic, METH_VARARGS,
+    {"getStatistic", (PyCFunction)py_timeDiffStatistic, METH_VARARGS,
      "Get cpu cycle"},
-    {"getCycleNoSta", (PyNoArgsFunction)py_timeDiffStatistic, METH_VARARGS,
+    {"getCycleNoSta", (PyCFunction)py_timerDiffNoStatistic, METH_VARARGS,
      "Get cpu cycle"},
-    {"cycleDiff", (PyNoArgsFunction)py_timerDiff, METH_VARARGS,
+    {"cycleDiff", (PyCFunction)py_timerDiff, METH_VARARGS,
      "Get cpu cycle diff of timer id"},
     {NULL, NULL, 0, NULL}};
 
