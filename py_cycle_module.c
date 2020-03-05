@@ -9,7 +9,7 @@ uint64_t rdtsc()
     return ((uint64_t)hi << 32) + lo;
 }
 
-static PyObject *py_getCycle(PyObject *self)
+static PyObject *py_getCycle(PyObject *self, PyObject *args)
 {
     return Py_BuildValue("K", rdtsc());
 }
@@ -65,13 +65,13 @@ static PyObject *py_timerDiffNoStatistic(PyObject *self, PyObject *args)
 }
 
 static PyMethodDef py_cycle_methods[] = {
-    {"getCycle", (PyCFunction)py_getCycle, METH_NOARGS,
+    {"getCycle", py_getCycle, METH_NOARGS,
      "Get cpu cycle"},
-    {"getStatistic", (PyCFunction)py_timeDiffStatistic, METH_VARARGS,
-     "Get cpu cycle"},
-    {"getCycleNoSta", (PyCFunction)py_timerDiffNoStatistic, METH_VARARGS,
-     "Get cpu cycle"},
-    {"cycleDiff", (PyCFunction)py_timerDiff, METH_VARARGS,
+    {"getStatistic", py_timeDiffStatistic, METH_VARARGS,
+     "Get statistic information"},
+    {"cycleDiffNoSta", py_timerDiffNoStatistic, METH_VARARGS,
+     "Get cpu cycle diff of timer id(No statistics)"},
+    {"cycleDiff", py_timerDiff, METH_VARARGS,
      "Get cpu cycle diff of timer id"},
     {NULL, NULL, 0, NULL}};
 
